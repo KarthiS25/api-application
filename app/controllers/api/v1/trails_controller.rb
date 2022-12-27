@@ -1,4 +1,4 @@
-class TrailsController < ApplicationController
+class Api::V1::TrailsController < ApplicationController
     before_action :authenticate_user!
     before_action :set_trail, only: %i[ show edit update destroy]
 

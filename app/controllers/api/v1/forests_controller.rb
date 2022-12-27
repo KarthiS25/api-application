@@ -1,4 +1,4 @@
-class ForestsController < ApplicationController
+class Api::V1::ForestsController < ApplicationController
     before_action :authenticate_user!
     before_action :set_forest, only: %i[ edit show update destroy ]
 
