@@ -1,6 +1,7 @@
 class Api::V1::GardensController < ApplicationController
     before_action :authenticate_user!
     before_action :set_garden, only: %i[ edit show update destroy ]
+    after_create :log_create_action
 
     def index
         @gardens = Garden.all
@@ -29,6 +30,10 @@ class Api::V1::GardensController < ApplicationController
     def destroy
         @garden.destroy
         render json: "#{@garden.name} has been deleted successfully"
+    end
+
+    def log_create_action
+        puts "Gardens created"
     end
 
 
