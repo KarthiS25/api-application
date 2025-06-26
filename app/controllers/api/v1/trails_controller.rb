@@ -15,12 +15,12 @@ class Api::V1::TrailsController < ApplicationController
     end
 
     def create
-        @trail = Trail.create(name: params[:name], miles: params[:miles], forest: params[:forest])
+        @trail = Trail.create(trail_params)
         render json: "#{@trail.name} has been created successfully."
     end
 
     def update
-        @trail = Trail.update(name: params[:name], miles: params[:miles], forest: params[:forest])
+        @trail = Trail.update(trail_params)
         render json: "#{@trail.name} has been updated successfully."
     end
 
@@ -34,4 +34,9 @@ class Api::V1::TrailsController < ApplicationController
     def set_trail
         @trail = Trail.find(params[:id])
     end
+
+    def trail_params
+        params.require(:trail).permit(:name, :miles, :garden_id)
+    end
+
 end
